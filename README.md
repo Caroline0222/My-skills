@@ -18,6 +18,20 @@ A collection of AI workflow skills I built and use daily.
 
 ---
 
+## Install · 安装
+
+One command via the standard skills CLI (works with Claude Code, Cursor, Codex, Gemini CLI and 70+ agents):
+一条命令安装（适用于 Claude Code、Cursor、Codex、Gemini CLI 等 70+ 工具）：
+
+```bash
+npx skills add Caroline0222/My-skills --skill interview-coach
+```
+
+Or manually copy any skill folder to `~/.workbuddy/skills/` or `~/.claude/skills/`.
+或者手动把任意 skill 文件夹复制到 `~/.workbuddy/skills/` 或 `~/.claude/skills/`。
+
+---
+
 ## Repo Structure · 目录结构
 
 ```
