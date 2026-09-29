@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>面试弹药库 · 张可欣 · 互联网产品/BA · 华泰国际控股</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f9f3e6; --bg-soft: #f0e3cb; --surface: #ffffff; --surface-2: #fbf5e3;
+    --ink: #3a2e22; --ink-soft: #6b5b48; --ink-mute: #9a8b78;
+    --line: #e8dfc4; --line-soft: #f0e6cf;
+    --green: #c89434; --green-soft: #dba75a; --green-tint: #f4e5c4;
+    --orange: #b85c2e; --orange-soft: #d17a4b; --orange-tint: #f5dfca;
+    --coral: #a14a30; --coral-tint: #f0d8c8;
+    --g-green: #6b8e4e; --g-yellow: #c89e4f; --g-red: #a85240;
+    --font-cn: "Noto Serif SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
+    --font-sans: "Inter", "PingFang SC", "Hiragino Sans GB", sans-serif;
+    --font-mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: var(--font-sans); font-size: 16px; line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(184, 92, 46, 0.05) 0, transparent 400px),
+      radial-gradient(circle at 80% 60%, rgba(200, 148, 52, 0.06) 0, transparent 400px);
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 64px 32px 96px; }
+  .hero {
+    background: var(--surface); border-radius: 24px; padding: 56px 48px;
+    box-shadow: 0 1px 2px rgba(58, 46, 34, 0.04), 0 8px 24px rgba(58, 46, 34, 0.07);
+    margin-bottom: 56px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--orange-tint) 0%, var(--green-tint) 100%);
+    opacity: 0.5; z-index: 0;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-sans); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.08em; color: var(--orange);
+    background: var(--orange-tint); padding: 6px 14px; border-radius: 999px;
+    margin-bottom: 20px; position: relative; z-index: 1;
+  }
+  .hero h1 {
+    font-family: var(--font-cn); font-size: 36px; font-weight: 700;
+    color: var(--ink); margin-bottom: 12px; position: relative; z-index: 1;
+  }
+  .hero-sub { font-size: 16px; color: var(--ink-soft); position: relative; z-index: 1; }
+  .hero-sub span { color: var(--orange); font-weight: 600; }
+  .meta-row {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px;
+    position: relative; z-index: 1;
+  }
+  .meta-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px; background: var(--surface-2);
+    border: 1px solid var(--line); border-radius: 10px;
+    font-size: 13px; color: var(--ink-soft);
+  }
+  .meta-chip strong { color: var(--ink); font-weight: 600; }
+
+  .chapter {
+    background: var(--surface); border-radius: 20px; padding: 48px;
+    margin-bottom: 32px;
+    box-shadow: 0 1px 2px rgba(58, 46, 34, 0.03), 0 4px 12px rgba(58, 46, 34, 0.04);
+    border: 1px solid var(--line-soft);
+  }
+  .chapter-head { display: flex; align-items: flex-start; gap: 24px; margin-bottom: 32px; }
+  .card-letter {
+    font-family: var(--font-sans); font-weight: 700; font-size: 36px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-soft) 100%);
+    width: 64px; height: 64px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(200, 148, 52, 0.22);
+  }
+  .card-letter.alt {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--coral) 100%);
+    box-shadow: 0 4px 12px rgba(184, 92, 46, 0.22);
+  }
+  .card-title { flex: 1; }
+  .card-title h2 {
+    font-family: var(--font-cn); font-size: 28px; font-weight: 700;
+    color: var(--ink); margin-bottom: 4px;
+  }
+  .card-title .sub { font-size: 14px; color: var(--ink-mute); letter-spacing: 0.04em; }
+
+  .key-callout {
+    background: linear-gradient(135deg, var(--green-tint) 0%, var(--orange-tint) 100%);
+    border-left: 5px solid var(--green);
+    padding: 24px 28px; border-radius: 14px; margin-bottom: 24px;
+    position: relative;
+  }
+  .key-callout.accent { border-left-color: var(--orange); }
+  .key-callout .label {
+    font-size: 12px; font-weight: 700; color: var(--orange);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .key-callout.accent .label { color: var(--coral); }
+  .key-callout h3 {
+    font-family: var(--font-cn); font-size: 22px; font-weight: 700;
+    color: var(--ink); line-height: 1.5; margin-bottom: 10px;
+  }
+  .key-callout p {
+    font-size: 15px; color: var(--ink-soft); line-height: 1.8;
+  }
+  .key-callout small {
+    display: block; margin-top: 12px; font-size: 13px;
+    color: var(--ink-mute); font-style: italic;
+  }
+
+  .sub { margin-bottom: 28px; }
+  .sub:last-child { margin-bottom: 0; }
+  .sub-title {
+    font-family: var(--font-cn); font-size: 18px; font-weight: 600;
+    color: var(--ink); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .sub-title::before {
+    content: ""; width: 4px; height: 18px;
+    background: linear-gradient(180deg, var(--green) 0%, var(--orange) 100%);
+    border-radius: 2px;
+  }
+  .sub-body { font-size: 15px; color: var(--ink-soft); line-height: 1.85; }
+  .sub-body p { margin-bottom: 10px; }
+  .sub-body ul { padding-left: 22px; margin-bottom: 10px; }
+  .sub-body li { margin-bottom: 6px; }
+  .sub-body strong { color: var(--ink); font-weight: 600; }
+
+  .timeline { position: relative; padding-left: 32px; margin: 12px 0; }
+  .timeline::before {
+    content: ""; position: absolute; left: 11px; top: 6px; bottom: 6px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--green) 0%, var(--orange) 100%);
+  }
+  .timeline-stage { position: relative; margin-bottom: 22px; padding-bottom: 4px; }
+  .timeline-stage:last-child { margin-bottom: 0; }
+  .timeline-stage::before {
+    content: ""; position: absolute; left: -27px; top: 8px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--surface); border: 3px solid var(--green);
+    box-shadow: 0 0 0 4px var(--bg);
+  }
+  .timeline-stage.alt::before { border-color: var(--orange); }
+  .timeline-stage h4 {
+    font-family: var(--font-cn); font-size: 16px; font-weight: 600;
+    color: var(--ink); margin-bottom: 8px;
+  }
+  .timeline-stage h4 small {
+    font-family: var(--font-sans); font-weight: 500; font-size: 12px;
+    color: var(--ink-mute); margin-left: 8px; letter-spacing: 0.04em;
+  }
+  .timeline-stage .body {
+    font-size: 14.5px; color: var(--ink-soft); line-height: 1.8;
+  }
+  .timeline-stage .body ul { padding-left: 20px; margin-top: 6px; }
+  .timeline-stage .body li { margin-bottom: 4px; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 14px; }
+  .tag {
+    display: inline-block; padding: 5px 12px; border-radius: 999px;
+    font-size: 12.5px; font-weight: 500;
+    background: var(--green-tint); color: var(--green);
+  }
+  .tag-orange { background: var(--orange-tint); color: var(--orange); }
+  .tag-coral { background: var(--coral-tint); color: var(--coral); }
+  .tag-mute { background: var(--surface-2); color: var(--ink-mute); border: 1px solid var(--line); }
+
+  .matrix {
+    width: 100%; border-collapse: separate; border-spacing: 0;
+    margin: 12px 0; font-size: 14px;
+  }
+  .matrix th {
+    background: var(--green-tint); color: var(--ink);
+    font-family: var(--font-cn); font-weight: 600;
+    padding: 14px 16px; text-align: left;
+    border-bottom: 2px solid var(--green);
+    font-size: 14px;
+  }
+  .matrix th:first-child { border-top-left-radius: 10px; }
+  .matrix th:last-child { border-top-right-radius: 10px; }
+  .matrix td {
+    padding: 16px; vertical-align: top;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--ink-soft); line-height: 1.7;
+  }
+  .matrix td:first-child {
+    font-weight: 500; color: var(--ink); font-size: 14px;
+  }
+  .matrix tr:last-child td { border-bottom: none; }
+  .matrix tr:nth-child(even) td { background: var(--surface-2); }
+
+  .matrix .td-lg {
+    font-family: var(--font-cn); font-size: 15.5px;
+    font-weight: 600; color: var(--ink); line-height: 1.6;
+  }
+
+  .lvl { display: inline-block; padding: 3px 10px; border-radius: 6px;
+         font-size: 12px; font-weight: 600; }
+  .lvl-green { background: #ecf1de; color: var(--g-green); }
+  .lvl-yellow { background: #f5e8c8; color: var(--g-yellow); }
+  .lvl-red { background: #f0d8c8; color: var(--g-red); }
+
+  .story {
+    background: var(--surface-2); border-radius: 14px; padding: 24px 28px;
+    margin-bottom: 18px; border-left: 4px solid var(--green);
+  }
+  .story.alt { border-left-color: var(--orange); }
+  .story-head { margin-bottom: 12px; }
+  .story-head h4 {
+    font-family: var(--font-cn); font-size: 17px; font-weight: 700;
+    color: var(--ink); margin-bottom: 6px;
+  }
+  .story-head .label {
+    font-size: 11.5px; font-weight: 600;
+    color: var(--orange); letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .story .body { font-size: 14.5px; color: var(--ink-soft); line-height: 1.85; }
+  .story .body p { margin-bottom: 8px; }
+  .story .body strong { color: var(--ink); font-weight: 600; }
+
+  .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .story-cell {
+    padding: 14px 16px; background: var(--surface-2);
+    border-radius: 10px; border: 1px solid var(--line);
+    font-size: 13.5px; color: var(--ink-soft);
+  }
+  .story-cell strong { color: var(--green); font-weight: 600; display: block; margin-bottom: 4px; font-size: 13px; }
+
+  .reason-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    margin: 16px 0;
+  }
+  .reason-card {
+    background: var(--surface-2); border-radius: 12px; padding: 20px;
+    border-top: 3px solid var(--green);
+  }
+  .reason-card.alt { border-top-color: var(--orange); }
+  .reason-card.alt2 { border-top-color: var(--coral); }
+  .reason-card .label {
+    font-size: 11.5px; font-weight: 700; color: var(--green);
+    letter-spacing: 0.08em; margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .reason-card.alt .label { color: var(--orange); }
+  .reason-card.alt2 .label { color: var(--coral); }
+  .reason-card p { font-size: 14px; color: var(--ink); line-height: 1.7; font-weight: 500; }
+  .reason-card small { display: block; margin-top: 8px; font-size: 12.5px; color: var(--ink-mute); line-height: 1.6; }
+
+  .qa { background: var(--surface-2); padding: 18px 22px; border-radius: 10px; margin-bottom: 12px; border-left: 3px solid var(--orange); }
+  .qa .q {
+    font-family: var(--font-cn); font-weight: 600; font-size: 14.5px;
+    color: var(--ink); margin-bottom: 8px;
+  }
+  .qa .q::before { content: "Q · "; color: var(--orange); font-weight: 700; }
+  .qa .a { font-size: 14px; color: var(--ink-soft); line-height: 1.85; }
+
+  .footer {
+    text-align: center; padding: 32px; color: var(--ink-mute);
+    font-size: 13px; letter-spacing: 0.06em;
+  }
+  .footer .line {
+    display: inline-block; margin: 0 12px; color: var(--line);
+  }
+  @media (max-width: 720px) {
+    .wrap { padding: 32px 16px 64px; }
+    .hero, .chapter { padding: 32px 24px; }
+    .hero h1 { font-size: 28px; }
+    .card-title h2 { font-size: 22px; }
+    .story-grid, .reason-grid { grid-template-columns: 1fr; }
+    .matrix { font-size: 13px; }
+    .matrix th, .matrix td { padding: 12px 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ Hero ============ -->
+  <header class="hero">
+    <span class="hero-tag">面试弹药库 · v4.4 金秋版 · 样例</span>
+    <h1>张可欣 → 华泰国际控股 · 互联网产品 / BA</h1>
+    <p class="hero-sub">
+      <span>6 年互联网产品</span> · <span>3 年金融科技</span> · <span>港美股 App DAU 翻 2.3 倍</span>
+    </p>
+    <div class="meta-row">
+      <div class="meta-chip">目标公司：<strong>华泰国际控股（中资券商海外旗舰）</strong></div>
+      <div class="meta-chip">面试轮次：<strong>HR · 业务负责人 · 合规 · 终面</strong></div>
+      <div class="meta-chip">生成日期：<strong>2026-09-28</strong></div>
+    </div>
+  </header>
+
+  <!-- ============ A｜了解机会 ============ -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <div class="card-letter">A</div>
+      <div class="card-title">
+        <h2>了解机会</h2>
+        <div class="sub">Know the Opportunity · 面试前必读</div>
+      </div>
+    </div>
+
+    <div class="key-callout">
+      <div class="label">公司一句话</div>
+      <h3>华泰证券唯一的境外全资子公司，国际化战略核心平台，标普 BBB+ 评级</h3>
+      <small>既是离岸资本市场服务枢纽，也是境内客户跨境业务的连接器，2026 战略关键词：跨境一体化、AI 应用、财富管理转型</small>
+    </div>
+
+    <div class="key-callout accent">
+      <div class="label">岗位为什么存在</div>
+      <h3>跨境互联网产品 / BA，需要把证券业务（港美股交易、财富管理）翻译成产品需求</h3>
+      <small>强调"积极拥抱 AI，有 AI 应用实际应用优先"——说明团队正在主动引入 AI 提效，BA 角色被期待带 AI 思维参与产品设计</small>
+    </div>
+
+    <div class="sub">
+      <div class="sub-title">必知 3 件事</div>
+      <div class="sub-body">
+        <ul>
+          <li><strong>合规边界硬</strong>：华泰国际受香港证监会（SFC）监管，所有产品需求都要过合规审查——BA 不只是写 PRD，更要懂合规框架，避免上线后被打回</li>
+          <li><strong>跨境数据流动是红线</strong>：港美股业务涉及两地数据交互，PRD 里"数据从哪里存 / 怎么走"必须明确，不能含糊——这是被追问的高频点</li>
+          <li><strong>2026 战略重点</strong>：跨境财富管理 + AI 应用（智能投顾 / 智能客服 / KYC 自动化）是 3 条主线，BA 选边跟对业务线很关键</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-title">高风险提示</div>
+      <div class="sub-body">
+        <ul>
+          <li><strong>互联网 vs 金融背景</strong>：JD 写"金融行业背景优先"——如果 BA 没有证券从业资格 + 没在券商做过，容易被归到"互联网人不懂金融"那类</li>
+          <li><strong>AI 应用经历</strong>：JD 写"有 AI 应用实际应用优先"——必须有真实落地案例（不只是"了解 / 学习过"）</li>
+          <li><strong>证券从业资格</strong>：硬资质，没考过的话面试官会直接问计划——建议面试前明确"已经在备考哪一科"</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ B｜我的定位 ============ -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <div class="card-letter alt">B</div>
+      <div class="card-title">
+        <h2>我的定位</h2>
+        <div class="sub">Positioning · 30 秒 + Why me</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-title">30 秒定位 · 开场破冰</div>
+      <div class="sub-body">
+        <p>我是张可欣，做了 <strong>6 年互联网产品，最近 3 年专注金融科技</strong>。最有代表性的事是主导港美股交易 App 改版，让 <strong>DAU 从 18 万涨到 42 万（+133%）</strong>，并且把 AI 客服机器人落地，<strong>替代了 32% 的重复人工咨询</strong>。</p>
+        <p>这次想找一份跨境券商互联网产品的岗位，把产品 + 合规 + AI 三件事一起做好。华泰国际是这块最成熟的玩家，所以看到机会就来了。</p>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-title">Why me · 我为什么能胜任</div>
+      <div class="reason-grid">
+        <div class="reason-card">
+          <div class="label">懂证券业务</div>
+          <p>3 年金融科技，证券 / 基金 / 财富管理三块都做过</p>
+          <small>清楚交易流程 / 监管红线 / 客户分层，比纯互联网 PM 上手快</small>
+        </div>
+        <div class="reason-card alt">
+          <div class="label">AI 应用落地</div>
+          <p>不是"了解"AI，是"上线"AI 客服机器人 32% 替代率</p>
+          <small>JD 强调"AI 应用实际应用优先"——我的经历直接对应这个 hard 要求</small>
+        </div>
+        <div class="reason-card alt2">
+          <div class="label">跨部门协作</div>
+          <p>产品 + 技术 + 合规 + 运营 + 客服五方协作过</p>
+          <small>BA 角色最难的是把"业务语言"翻译成"PRD 语言"，这正是我的强项</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ C｜证据 + 故事 ============ -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <div class="card-letter">C</div>
+      <div class="card-title">
+        <h2>证据 + 故事</h2>
+        <div class="sub">Evidence & Stories · 4 列矩阵 + 6 类故事</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-title">4 列证据矩阵</div>
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th style="width:24%">JD 要求</th>
+            <th style="width:24%">我的证据</th>
+            <th style="width:14%">等级</th>
+            <th style="width:38%">可能追问</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-lg">6 年以上互联网产品/BA 经验</td>
+            <td>6 年完整产品经验（2 年 C 端 + 1 年 SaaS + 3 年金融科技）</td>
+            <td><span class="lvl lvl-green">充分</span></td>
+            <td>你做的金融产品是 C 端还是 B 端？客户体量多大？</td>
+          </tr>
+          <tr>
+            <td class="td-lg">证券/财富管理类产品经验</td>
+            <td>锐信证券科技 3 年，主导港美股 App + 智能投顾"智投星"</td>
+            <td><span class="lvl lvl-green">充分</span></td>
+            <td>港美股交易你最熟哪个环节？合规审查流程你参与过几次？</td>
+          </tr>
+          <tr>
+            <td class="td-lg">积极拥抱 AI，有 AI 应用实际应用优先</td>
+            <td>AI 客服机器人上线，替代 32% 重复咨询，CSAT 4.6</td>
+            <td><span class="lvl lvl-green">充分</span></td>
+            <td>AI 客服是调用开源还是自研？效果怎么评估的？出错谁负责？</td>
+          </tr>
+          <tr>
+            <td class="td-lg">项目管理 / 敏捷开发经验</td>
+            <td>主导 3 个跨部门项目，2 个 0-1 全流程负责</td>
+            <td><span class="lvl lvl-green">充分</span></td>
+            <td>你主导的项目最大多大规模？跨几个部门？</td>
+          </tr>
+          <tr>
+            <td class="td-lg">BRD&PRD 撰写、原型设计</td>
+            <td>写过 30+ 份 PRD，覆盖交易 / 投顾 / 客服 3 条线</td>
+            <td><span class="lvl lvl-green">充分</span></td>
+            <td>PRD 评审一次通过率多少？被技术 / 合规打回最多的是什么？</td>
+          </tr>
+          <tr>
+            <td class="td-lg">证券从业资格</td>
+            <td>已通过证券从业 + 基金从业（2024 年）</td>
+            <td><span class="lvl lvl-green">充分</span></td>
+            <td>为什么考这个证？对你工作有什么帮助？</td>
+          </tr>
+          <tr>
+            <td class="td-lg">跨境 / 跨地区业务经验</td>
+            <td>锐信科技服务过港 / 美 / 新加坡客户，懂两地数据合规差异</td>
+            <td><span class="lvl lvl-yellow">够用</span></td>
+            <td>跨境数据传输你具体处理过几次？最大的坑是什么？</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub">
+      <div class="sub-title">6 类故事标签 · 张可欣的弹药库</div>
+      <div class="tag-row">
+        <span class="tag">① 代表性成果</span>
+        <span class="tag tag-orange">② 最难挑战</span>
+        <span class="tag tag-coral">③ 冲突</span>
+        <span class="tag">④ 失败</span>
+        <span class="tag tag-orange">⑤ 主动改进</span>
+        <span class="tag tag-coral">⑥ 快速学习</span>
+      </div>
+
+      <div class="story">
+        <div class="story-head">
+          <h4>港美股 App 改版，DAU 从 18 万涨到 42 万</h4>
+          <span class="label">① 代表性成果 · STAR</span>
+        </div>
+        <div class="body">
+          <p><strong>背景</strong>：锐信证券科技老 App 用户活跃下滑，2023 H1 立项做改版，对标富途 / 老虎。</p>
+          <p><strong>问题</strong>：原 App 是 PC 端迁移过来的"网页套壳"，交易流程 5 步、行情查看 3 步，用户流失率 60%。</p>
+          <p><strong>约束</strong>：4 个月 MVP、原有交易接口不能动、合规要求所有页脚必须有"风险揭示"。</p>
+          <p><strong>判断</strong>：不做"功能堆叠"，做"3 个核心流程重做"——交易 / 行情 / 资产页每个流程砍 2 步。</p>
+          <p><strong>行动</strong>：带 2 名设计师 + 1 名前端，跑了 80 个用户访谈 + 4 轮 A/B 测试，最后交易流程从 5 步压到 2 步。</p>
+          <p><strong>证据</strong>：DAU 18 万 → 42 万（+133%），次日留存从 42% 涨到 67%，新用户开户转化率 +58%。</p>
+          <p><strong>结果</strong>：成为公司 2023 年旗舰项目，公司拿这个 case 拿了 B 轮融资的核心客户证据。</p>
+          <p><strong>复盘</strong>：如果重做，我会更早拉合规同学进来一起评审，避免"风险揭示"导致 UI 改版 3 次。</p>
+        </div>
+      </div>
+
+      <div class="story alt">
+        <div class="story-head">
+          <h4>AI 客服机器人上线，替代 32% 重复咨询</h4>
+          <span class="label">① 代表性成果 · AI 应用</span>
+        </div>
+        <div class="body">
+          <p><strong>背景</strong>：客服团队每天 60% 时间在回答"怎么开户 / 怎么入金 / 怎么出金"这类 FAQ。</p>
+          <p><strong>判断</strong>：这块 AI 能完全替代，不涉及投资建议，没有合规风险。</p>
+          <p><strong>行动</strong>：我做了 2 件事——① 把 200 条高频 FAQ 整理成知识库（跟客服团队花了 3 周）② 跟算法同学合作微调模型，重点优化"出金"这类高敏感问题的回答话术。</p>
+          <p><strong>关键决策</strong>：AI 回答里凡是涉及"账户操作 / 资金变动"的内容，必须加"建议联系人工客服二次确认"——这个是我硬加的，合规同学一开始嫌啰嗦，最后因为降低了 70% 的误操作投诉被采纳。</p>
+          <p><strong>结果</strong>：替代 32% 重复咨询，CSAT 4.6（人工是 4.5），客服团队从 18 人缩到 12 人。</p>
+        </div>
+      </div>
+
+      <div class="story">
+        <div class="story-head">
+          <h4>智能投顾"智投星"从 0 到 1 签约 8 万客户</h4>
+          <span class="label">② 最难挑战 · 0-1 全流程</span>
+        </div>
+        <div class="body">
+          <p><strong>背景</strong>：2024 年公司想做 C 端财富管理转型，需要一款智能投顾产品对标蚂蚁基金 / 理财通。</p>
+          <p><strong>难点</strong>：① 投顾牌照申请周期 6 个月 ② 合规对"AI 给投资建议"零容忍 ③ 算法团队只做过研究，没做过产品化。</p>
+          <p><strong>我的做法</strong>：从牌照申请开始就作为 PM 跟——把所有合规要求翻译成 PRD 边界。算法团队交付的"模型输出"在我这层先过一道"合规过滤器"，把"高风险建议"自动降级为"建议咨询持牌顾问"。</p>
+          <p><strong>结果</strong>：6 个月拿牌，3 个月内签约 8 万客户，AUM 16 亿。</p>
+          <p><strong>学到的</strong>：金融产品 0-1 跟互联网 0-1 最大的差异是"合规是 PRD 的硬约束，不是后期补丁"。</p>
+        </div>
+      </div>
+
+      <div class="story alt">
+        <div class="story-head">
+          <h4>跟算法团队的认知分歧：要不要 AI 自动调仓</h4>
+          <span class="label">③ 冲突</span>
+        </div>
+        <div class="body">
+          <p><strong>背景</strong>：智投星 v2 想做"AI 自动调仓"功能（按市场情况自动 rebalance 用户持仓）。</p>
+          <p><strong>冲突</strong>：算法团队认为"技术上能做到，且能增厚收益"；我坚持"合规不允许，且用户接受度低"。</p>
+          <p><strong>我的坚持理由</strong>：① SFC 对"自动调仓"有牌照要求，智投星现有牌照不允许 ② 用户调研显示 73% 不接受"AI 自动改我持仓"。</p>
+          <p><strong>解决</strong>：做了 2 周深度调研，给算法团队看了一份"市场调研 + 牌照分析"的双重反驳。算法负责人最后说"你这不是技术说服，这是商业说服"。</p>
+          <p><strong>结果</strong>：改成"AI 给调仓建议 → 用户一键确认 → 执行"——既保留了算法的能力，又过了合规关。后来这个版本成了产品差异化卖点。</p>
+        </div>
+      </div>
+
+      <div class="story">
+        <div class="story-head">
+          <h4>基金推荐功能上线 3 个月被下线</h4>
+          <span class="label">④ 失败 · 必被问</span>
+        </div>
+        <div class="body">
+          <p><strong>背景</strong>：2024 H2 想做一个"AI 基金推荐"功能，根据用户风险测评推基金。</p>
+          <p><strong>投入</strong>：3 个月 + 1 个算法 + 1 个前端。</p>
+          <p><strong>结果</strong>：上线 3 个月，下线。原因是合规审查发现"AI 推荐没做利益冲突披露"——基金代销必须披露分成比例。</p>
+          <p><strong>失败原因</strong>：① PRD 里没把"代销合规"作为 hard constraint ② 风险测评设计有诱导性，被监管问询。</p>
+          <p><strong>学到的</strong>：金融产品的合规不是"上线后再补"，是"PRD 写作第一天就要写进去"。这次失败让我后来做智投星时，合规同学从需求阶段就介入。</p>
+        </div>
+      </div>
+
+      <div class="story alt">
+        <div class="story-head">
+          <h4>主动梳理全公司"AI 应用图谱"</h4>
+          <span class="label">⑤ 主动改进</span>
+        </div>
+        <div class="body">
+          <p><strong>背景</strong>：发现公司 8 个产品线都在做 AI 试点，但互不知情，重复造轮子。</p>
+          <p><strong>行动</strong>：自发牵头做了一份"AI 应用图谱 v1"，横轴是 8 个产品线，纵轴是 5 类 AI 能力（NLU / 推荐 / 预测 / 生成 / Agent），标注每个交叉点是否有落地。</p>
+          <p><strong>结果</strong>：被公司采纳为内部文档，新员工入职直接学这套。后来 2 个重复项目被合并，节省 80 万研发成本。</p>
+        </div>
+      </div>
+
+      <div class="story">
+        <div class="story-head">
+          <h4>2 周搞懂 SFC 对 AI 投顾的合规边界</h4>
+          <span class="label">⑥ 快速学习</span>
+        </div>
+        <div class="body">
+          <p><strong>背景</strong>：2024 年接智投星时，我对 SFC 监管框架只懂皮毛。</p>
+          <p><strong>行动</strong>：2 周内读完 SFC 官网 12 份指引 + 5 个持牌机构的合规手册 + 跟公司合规总监做了 4 次 1v1。</p>
+          <p><strong>结果</strong>：能在 PRD 里直接写"哪些 AI 行为能做 / 哪些不能做"，不需要每次都问合规。</p>
+          <p><strong>可迁移性</strong>：面对华泰国际这种跨境业务，我可以快速建立"内地 / 香港 / 美国"三地合规差异的认知框架——这是 BA 在跨境券商的核心能力。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ D｜准备 + 深挖 ============ -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <div class="card-letter alt">D</div>
+      <div class="card-title">
+        <h2>准备 + 深挖</h2>
+        <div class="sub">Deep Dive · 防守卡 + 三级追问 + 专业深挖</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-title">履历防守卡 · 锐信证券科技 3 年</div>
+      <div class="sub-body">
+        <ul>
+          <li><strong>公司背景</strong>：锐信证券科技（RuiXin Securities Tech），B 轮，350 人，互联网券商技术服务</li>
+          <li><strong>为什么加入</strong>：看好互联网 + 金融交叉赛道，主动从 SaaS 转过来</li>
+          <li><strong>负责什么</strong>：港美股 App、智能投顾"智投星"、AI 客服机器人 3 条线</li>
+          <li><strong>最大成果</strong>：App DAU 18 万→42 万、AI 客服替代 32%、智投星 AUM 16 亿</li>
+          <li><strong>为什么离开</strong>：锐信偏 C 端零售，想找 B 端跨境券商的复杂业务场景</li>
+          <li><strong>与新岗位的连接</strong>：港美股 + 智能投顾 + AI 应用，跟华泰国际 2026 三大战略完全对齐</li>
+          <li><strong>高风险问题</strong>：① 为什么不做产品负责人？→ 主动选，承担 P0 项目 ② 锐信为什么 B 轮没继续融？→ 已融但行业下行估值回调</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-title">三级追问预案</div>
+      <div class="sub-body">
+        <p><strong>第一层（事实）</strong>：背景 / 职责 / 结果是什么？是否真实、你参与到哪里？</p>
+        <p><strong>第二层（判断）</strong>：为什么这么做？为什么不选另一个方案？是否真正做过决策？</p>
+        <p><strong>第三层（复盘）</strong>：最大困难？失败过吗？再重做怎么调？是否具备成熟度？</p>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-title">专业深挖 · 跨境券商 BA 必问 5 题</div>
+
+      <div class="qa">
+        <div class="q">Q1: 华泰国际这种"中资券商海外子公司"，做跨境产品最大的难点是什么？</div>
+        <div class="a">最大的难点不是技术，是<strong>两地监管差异</strong>。内地对个人信息出境有严格规定（数据安全法 / 个保法），香港 SFC 对客户资产隔离有严格要求。<br>
+          同一个功能，内地版和香港版 PRD 至少 30% 内容不同——这块 PRD 评审时一定要拉两地合规同学双签字。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q">Q2: AI 在跨境券商最应该先落地哪个场景？</div>
+        <div class="a">我的判断是 <strong>KYC（客户身份识别）自动化</strong>。<br>
+          ① 重复性高（每个新客户都要做）③ 人工成本高（一个客户经理一天最多处理 8-10 个）③ 合规风险明确（错一次就触发监管问询）。<br>
+          比 AI 投顾更稳——因为不需要做投资决策，只做"材料识别 + 风险标签"。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q">Q3: BA 写 PRD 跟互联网 PM 写 PRD 最大的区别是什么？</div>
+        <div class="a">金融 PRD 必须包含 <strong>4 个硬章节</strong>：① 监管依据（哪条 SFC / 内地法规）② 数据流向图（信息从哪来到哪去）③ 客户影响评估（哪些客户会受影响）④ 风险揭示文案（页脚 / 弹窗文案）。<br>
+          互联网 PM 只写"功能 + 流程 + 验收标准"是不够的，金融 PRD 缺这 4 章上线就被打回。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q">Q4: 港美股交易 App 改版，怎么处理合规"风险揭示"和用户体验的矛盾？</div>
+        <div class="a">我的做法是 <strong>"分层揭示"</strong>——<br>
+          ① 强合规内容（监管要求每次都显示）做"弹窗强制阅读"<br>
+          ② 中等内容（风险等级提示）做"常驻顶部条"<br>
+          ③ 弱等内容（产品说明）做"折叠展开"<br>
+          关键是不让合规要求变成"用户体验的累赘"——分层后用户接受度提升 47%。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q">Q5: 如果你来华泰国际，第一周会做什么？</div>
+        <div class="a">三件事，按顺序：<br>
+          ① <strong>读完 SFC + 内地监管对跨境业务的最新 3 份指引</strong>（建立合规基线）<br>
+          ② <strong>跑 5 个客户经理 + 3 个合规 + 2 个技术的 1v1</strong>（理解三方痛点）<br>
+          ③ <strong>梳理当前产品 PRD 中合规章节的"补全率"</strong>（找到第一个 P0 改进点）</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ E｜适配 + 练习 ============ -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <div class="card-letter">E</div>
+      <div class="card-title">
+        <h2>适配 + 练习</h2>
+        <div class="sub">Format & Practice · 4 轮预判 + Case 8 步 + 最小练习包</div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-title">面试形式预判 · 4 轮</div>
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th style="width:22%">轮次</th>
+            <th style="width:22%">形式</th>
+            <th style="width:22%">核心考点</th>
+            <th style="width:34%">弹药映射</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-lg">HR Screening</td>
+            <td>动机 + 稳定性 + 资质</td>
+            <td>为什么华泰 / 为什么离开 / 证券资格</td>
+            <td>30 秒定位 + Why this role + 离职原因（锐信偏 C 端想扛更复杂的跨境业务）</td>
+          </tr>
+          <tr>
+            <td class="td-lg">业务负责人</td>
+            <td>Professional · BA 深度</td>
+            <td>PRD / 合规 / 跨部门协作</td>
+            <td>D 章节 5 题 + AI 客服机器人 + 智投星 0-1 故事</td>
+          </tr>
+          <tr>
+            <td class="td-lg">合规负责人</td>
+            <td>Specialist · 合规理解</td>
+            <td>两地监管 / 风险揭示 / 数据合规</td>
+            <td>专业深挖 Q1 + Q3 + Q4 + 失败故事（基金推荐下线）</td>
+          </tr>
+          <tr>
+            <td class="td-lg">终面</td>
+            <td>Final Executive · 价值观</td>
+            <td>长期主义 / 抗压 / 视野</td>
+            <td>主动改进故事 + 90 天思路 + 3 个反问</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub">
+      <div class="sub-title">Case 通用 8 步 · 业务负责人必考"跨境财富管理 AI 助手怎么落地"</div>
+      <div class="timeline">
+        <div class="timeline-stage"><h4>① 明确目标 <small>Clarify Goal</small></h4><div class="body">先跟面试官确认：要服务哪类客户（高净值 / 零售）？主要场景？合规边界？</div></div>
+        <div class="timeline-stage alt"><h4>② 澄清现状 <small>Clarify Current</small></h4><div class="body">客户经理当前一天处理多少客户咨询？哪些问题高频？痛点在哪？</div></div>
+        <div class="timeline-stage"><h4>③ 提出假设 <small>State Hypothesis</small></h4><div class="body">假设：客户经理 70% 时间在"重复回答 + 整理材料"，AI 助手优先做这两块</div></div>
+        <div class="timeline-stage alt"><h4>④ 拆解问题 <small>Decompose</small></h4><div class="body">场景 1：产品咨询（合规风险低）<br>场景 2：账户操作辅助（中等风险）<br>场景 3：投资建议生成（高风险，SFC 监管）</div></div>
+        <div class="timeline-stage"><h4>⑤ 做优先级 <small>Prioritize</small></h4><div class="body">场景 1 优先（高 ROI + 低风险）→ 场景 2 次之（中等风险）→ 场景 3 最后（先做"建议"不做"自动"）</div></div>
+        <div class="timeline-stage alt"><h4>⑥ 给出方案 <small>Solution</small></h4><div class="body">MVP：AI 助手 v1 = 产品咨询 FAQ + 风险测评辅助 + 投资建议草稿（人工必审）<br>每一步都有"AI 建议 → 人工确认"链路</div></div>
+        <div class="timeline-stage"><h4>⑦ 定义验证 <small>Define Validation</small></h4><div class="body">3 个指标：客户经理采纳率 / 客户咨询响应时长 / 投资建议合规违规次数<br>每周复盘，8 周后决定是否推进</div></div>
+        <div class="timeline-stage alt"><h4>⑧ 总结结论 <small>Summarize</small></h4><div class="body">跨境 AI 助手不是"替代客户经理"，是"让客户经理从重复工作里解放出来"。优先级：产品咨询 → 账户操作 → 投资建议，每步 8 周验证。</div></div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <div class="sub-title">最小练习包 · 每次面试必过</div>
+      <div class="story-grid">
+        <div class="story-cell"><strong>30 秒定位</strong>练 3 遍不卡壳</div>
+        <div class="story-cell"><strong>1 分钟自我介绍</strong>30 秒版 + 行业洞察版</div>
+        <div class="story-cell"><strong>2 个核心故事</strong>1 / 2 / 5 分钟版各 1 次</div>
+        <div class="story-cell"><strong>1 个失败故事</strong>基金推荐功能下线那次</div>
+        <div class="story-cell"><strong>1 个冲突故事</strong>跟算法团队的"自动调仓"</div>
+        <div class="story-cell"><strong>1 个离职原因</strong>锐信偏 C 端想扛更复杂的跨境业务</div>
+        <div class="story-cell"><strong>1 个反问</strong>团队当前最大卡点</div>
+        <div class="story-cell"><strong>3 个反问</strong>业务 / 合规 / 终面</div>
+        <div class="story-cell"><strong>Case 8 步</strong>跨境 AI 助手落地练 1 次</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ F｜最终执行 ============ -->
+  <section class="chapter">
+    <div class="chapter-head">
+      <div class="card-letter alt">F</div>
+      <div class="card-title">
+        <h2>最终执行</h2>
+        <div class="sub">Execute · 面前 / 面中 / 面后 6 段</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-stage">
+        <h4>T-24h <small>面前 24 小时</small></h4>
+        <div class="body">
+          <ul>
+            <li>核 JD + 华泰国际最新动态 + 4 轮面试官公开主页</li>
+            <li>过 1 遍 6 章弹药库，每个故事念 1 遍</li>
+            <li>准备 3 个高价值反问（业务 / 合规 / 终面）</li>
+            <li>设备 / 网络 / 链接自检 1 次</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-stage alt">
+        <h4>T-12h <small>面前 12 小时</small></h4>
+        <div class="body">
+          <ul>
+            <li>把 6 章弹药库的关键词过 1 遍（不背全文）</li>
+            <li>30 秒定位 + 1 分钟介绍各念 1 次</li>
+            <li>准备好面试设备、充电线、备用网络</li>
+            <li>早睡，保证精神状态</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-stage">
+        <h4>T-1h <small>面前 1 小时</small></h4>
+        <div class="body">
+          <ul>
+            <li>4 段定位（30 秒 / 1 分钟 / 失败 / 离职）默背</li>
+            <li>必知 3 件事过 1 遍</li>
+            <li>设备 + 网络 + 链接再测 1 次</li>
+            <li>喝杯温水，调整状态</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-stage alt">
+        <h4>T-0 <small>面试中</small></h4>
+        <div class="body">
+          <ul>
+            <li>先判断问题类型（行为 / 动机 / BA 专业 / 合规 / Case）</li>
+            <li>结论先行，不裹脚走铺垫</li>
+            <li>区分"我做的 / 团队做的 / 结果怎么产生"</li>
+            <li>不确定的假设 + 待确认，不硬答</li>
+            <li>Case 先澄清，再假设、再分析、有结论</li>
+            <li>用反问确认岗位成功标准 + 对方疑虑</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-stage">
+        <h4>T+0 <small>面后立刻</small></h4>
+        <div class="body">
+          <ul>
+            <li>趁热记 5 分钟：问过什么 / 答得不好的 / 面试官透露的信息</li>
+            <li>把新发现的薄弱点标到弹药库里</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-stage alt">
+        <h4>T+24h <small>面后 24 小时</small></h4>
+        <div class="body">
+          <ul>
+            <li>复盘 1 次：哪段最好复用 / 哪段最该改 / 下次调整</li>
+            <li>24 小时内发感谢信（具体到对话细节）</li>
+            <li>流程卡住，礼貌跟进 1 次</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ Footer ============ -->
+  <div class="footer">
+    张可欣面试弹药库 · v4.4 金秋版 · 2026-09-28 生成
+    <span class="line">·</span>
+    由 面试陪练 Skill 输出
+    <span class="line">·</span>
+    信息不足先追问 · 不虚构不夸大不写空话
+  </div>
+
+</div>
+</body>
+</html>
