@@ -12,7 +12,5 @@ Thumbs.db
 # WorkBuddy 安装包（冗余备份，不进版本控制）
 *.skill
 
-# 大文件 / 个人操作文档
+# 大图（占空间）
 样例截图-华泰国际-全图.png
-上传GitHub操作指南.md
-sample-*.html

@@ -1,76 +1,78 @@
-# My Skills · Caroline's AI Skills Collection
+# Interview Coach · 面试陪练
 
-> 这里收录我做过的所有 AI Skills，按 WorkBuddy Skill 标准（SKILL.md + references/ + assets/）打包。
+An AI workflow skill that turns JD + resume + company info into a structured 6-chapter interview prep playbook.
 
-## 当前收录
-
-### 1. [面试陪练（interview-coach）](./interview-coach/)
-
-把 JD + 简历 + 公司信息结构化成 6 章面试弹药库：
-
-- **A 了解机会** · **B 我的定位** · **C 证据 + 故事**
-- **D 准备 + 深挖** · **E 适配 + 练习** · **F 最终执行**
-
-**适用**：产品 / 运营 / 销售 / HR / 财务 / 技术 / 设计 / 法务 / 项目管理 全行业社招
-**理念**：不虚构 · 不夸大 · 不写空话 · 信息不足先追问
+Works across industries: **Product / Operations / Sales / HR / Finance / Tech / Design / Legal / Project Management**.
 
 ---
 
-## 视觉化预览
+## What It Is
 
-| 类型 | 链接 |
-|------|------|
-| 林青 → 智聘 AI 样例（虚构 PM 案例）| [./面试陪练-样例输出-v4.4.html](./面试陪练-样例输出-v4.4.html) |
-| 张可欣 → 华泰国际 样例（虚构 BA 案例）| [./面试陪练-样例-张可欣-华泰国际.html](./面试陪练-样例-张可欣-华泰国际.html) |
-| 华泰国际样例首屏截图 | ![首屏预览](./样例截图-华泰国际-首屏.png) |
+An open-source AI tool. **No fabrication. No exaggeration. No empty talk. Asks before assuming when info is missing.**
 
----
+> 一个开源的 AI 工具。**不虚构 · 不夸大 · 不写空话 · 信息不足会先追问**。
 
-## 路线图（Roadmap）
+Feed it your JD, resume, and target company — get back a 6-chapter playbook:
 
-- [ ] HR 简历润色
-- [ ] Offer 谈判岗位
-- [ ] 离职交接文档
-- [ ] 团队管理助手
-- [ ] 客户拜访纪要
-- [ ] 客户提案生成
+| Chapter | Question It Answers / 回答的问题 |
+|---------|-------------------------------|
+| **A — Understand the Opportunity** | What is this company and role really about? / 这家公司和岗位到底是什么 |
+| **B — My Positioning** | Why am I a match for this role? / 我跟这个岗位为什么匹配 |
+| **C — Evidence + Stories** | Which experiences back up my claims? / 我有哪些经历能接住这个问题 |
+| **D — Prep + Deep Dive** | What will the interviewer press on, and how do I prep? / 面试官会怎么追问，我提前怎么答 |
+| **E — Fit + Practice** | What does each round look like? How do I crack a case? / 几轮面试准备什么、Case 怎么拆 |
+| **F — Final Execution** | Concrete actions before / during / after the interview / 面前面中面后的具体动作 |
 
 ---
 
-## 贡献新 Skill
-
-新 skill 按以下结构新建子目录：
+## Repository Layout
 
 ```
-your-skill-name/
-├── SKILL.md            # 主入口（含 YAML frontmatter）
-├── references/         # 工作流文档
-└── assets/             # 模板与素材
-```
-
-每个 SKILL.md 顶部需包含：
-
-```yaml
----
-name: your-skill-name
-description: 一句话讲清楚这个 skill 是干什么的、解决什么问题。
-allowed-tools: [WebSearch, WebFetch]   # 按需声明
----
+My-skills/
+├── README.md
+├── LICENSE
+├── interview-coach/                         # The skill
+│   ├── SKILL.md                             # Main entry point
+│   ├── references/                          # 9 workflow docs
+│   │   ├── info-gathering.md                # 信息收集与追问
+│   │   ├── jd-parsing.md                    # JD 拆解
+│   │   ├── company-research.md              # 公司调研
+│   │   ├── candidate-positioning.md         # 候选人定位
+│   │   ├── evidence-and-stories.md          # 证据与故事
+│   │   ├── prep-and-deep-dive.md            # 准备与深挖
+│   │   ├── interview-formats.md             # 面试形式
+│   │   ├── execution-checklist.md           # 执行清单
+│   │   └── anti-ai-style.md                 # 去 AI 味
+│   └── assets/
+│       └── cards-template.html              # 金秋配色弹药库模板
+├── 面试陪练-样例输出-v4.4.html             # Sample: PM (林青 → 智聘 AI)
+├── 面试陪练-样例-张可欣-华泰国际.html      # Sample: BA (fictional)
+└── 样例截图-华泰国际-首屏.png              # Header preview image
 ```
 
 ---
 
-## 维护指南
+## Sample Preview
 
-```bash
-# 拉取最新
-git pull
+![Header preview](./样例截图-华泰国际-首屏.png)
 
-# 提交更新
-git add -A
-git commit -m "更新说明"
-git push
-```
+Open the `.html` files locally in a browser to view the full playbook.
+
+---
+
+## How to Use
+
+### In WorkBuddy
+
+1. Copy the `interview-coach/` folder to `~/.workbuddy/skills/`
+2. Restart WorkBuddy
+3. In chat, say "use 面试陪练 to prep me for [company] [role]" and attach JD + resume
+
+### Standalone
+
+- `SKILL.md` — main entry point, follow the workflow described there
+- `references/` — step-by-step guidance for each chapter
+- `assets/cards-template.html` — visual template for the final output
 
 ---
 
