@@ -1,18 +1,41 @@
-# Interview Coach · 面试陪练
+# My Skills · 我的 Skill 合集
 
-An AI workflow skill that turns JD + resume + company info into a structured 6-chapter interview prep playbook.
+A collection of AI workflow skills I built and use daily.
+我的 AI 工作流 Skill 合集，每个都来自真实工作场景，持续更新。
 
-Works across industries: **Product / Operations / Sales / HR / Finance / Tech / Design / Legal / Project Management**.
+> Compatible with WorkBuddy / Claude Code — copy any skill folder to `~/.claude/skills/` and it works.
+> 兼容 WorkBuddy / Claude Code：把任意 skill 文件夹复制到 `~/.claude/skills/` 即可使用。
 
 ---
 
-## What It Is
+## Skills · Skill 索引
 
-An open-source AI tool. **No fabrication. No exaggeration. No empty talk. Asks before assuming when info is missing.**
+| Skill | What it does | Status |
+|-------|-------------|--------|
+| **[interview-coach](skills/interview-coach/)** · 面试陪练 | Turns JD + resume + company info into a structured 6-chapter interview playbook. 把 JD + 简历 + 公司信息变成 6 章结构化面试弹药库 | ✅ v4.4 |
 
-> 一个开源的 AI 工具。**不虚构 · 不夸大 · 不写空话 · 信息不足会先追问**。
+<!-- Add new skills here, one row each -->
 
-Feed it your JD, resume, and target company — get back a 6-chapter playbook:
+---
+
+## Repo Structure · 目录结构
+
+```
+My-skills/
+├── skills/                  # Skill bodies · Skill 本体
+│   └── interview-coach/     # SKILL.md + references/ + assets/
+├── samples/                 # Sample outputs · 产出样例
+│   └── interview-coach/     # 2 sample playbooks + screenshots
+└── publish.sh               # One-command release script · 一键发布脚本
+```
+
+---
+
+## Featured: interview-coach · 面试陪练
+
+An AI workflow skill that turns JD + resume + company info into a structured 6-chapter interview prep playbook. Works across industries: **Product / Operations / Sales / HR / Finance / Tech / Design / Legal / Project Management**.
+
+一个开源的 AI 工具。**不虚构 · 不夸大 · 不写空话 · 信息不足会先追问**。
 
 | Chapter | Question It Answers / 回答的问题 |
 |---------|-------------------------------|
@@ -25,54 +48,19 @@ Feed it your JD, resume, and target company — get back a 6-chapter playbook:
 
 ---
 
-## Repository Layout
-
-```
-My-skills/
-├── README.md
-├── LICENSE
-├── interview-coach/                         # The skill
-│   ├── SKILL.md                             # Main entry point
-│   ├── references/                          # 9 workflow docs
-│   │   ├── info-gathering.md                # 信息收集与追问
-│   │   ├── jd-parsing.md                    # JD 拆解
-│   │   ├── company-research.md              # 公司调研
-│   │   ├── candidate-positioning.md         # 候选人定位
-│   │   ├── evidence-and-stories.md          # 证据与故事
-│   │   ├── prep-and-deep-dive.md            # 准备与深挖
-│   │   ├── interview-formats.md             # 面试形式
-│   │   ├── execution-checklist.md           # 执行清单
-│   │   └── anti-ai-style.md                 # 去 AI 味
-│   └── assets/
-│       └── cards-template.html              # 金秋配色弹药库模板
-├── 面试陪练-样例输出-v4.4.html             # Sample: PM (林青 → 智聘 AI)
-├── 面试陪练-样例-张可欣-华泰国际.html      # Sample: BA (fictional)
-└── 样例截图-华泰国际-首屏.png              # Header preview image
-```
-
----
-
 ## Sample Preview
 
-![Header preview](./样例截图-华泰国际-首屏.png)
+![Header preview](./samples/interview-coach/样例截图-华泰国际-首屏.png)
 
-Open the `.html` files locally in a browser to view the full playbook.
+Open the `.html` files in [samples/](samples/interview-coach/) locally in a browser to view full playbooks.
 
 ---
 
-## How to Use
+## How to Use · 怎么用
 
-### In WorkBuddy
-
-1. Copy the `interview-coach/` folder to `~/.workbuddy/skills/`
-2. Restart WorkBuddy
-3. In chat, say "use 面试陪练 to prep me for [company] [role]" and attach JD + resume
-
-### Standalone
-
-- `SKILL.md` — main entry point, follow the workflow described there
-- `references/` — step-by-step guidance for each chapter
-- `assets/cards-template.html` — visual template for the final output
+1. Pick a skill from the index above · 从上面的索引挑一个 skill
+2. Copy its folder (e.g. `skills/interview-coach/`) to `~/.workbuddy/skills/` or `~/.claude/skills/`
+3. Restart the app, then just describe your task in chat — the skill triggers automatically
 
 ---
 
