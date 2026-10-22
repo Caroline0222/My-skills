@@ -12,5 +12,8 @@ Thumbs.db
 # WorkBuddy 安装包（冗余备份，不进版本控制）
 *.skill
 
+# 小红书上传包（打包产物，不进版本控制）
+*-redskill-v*.zip
+
 # 大图（占空间）
 样例截图-华泰国际-全图.png
