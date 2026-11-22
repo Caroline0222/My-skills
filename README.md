@@ -44,10 +44,9 @@ Or manually copy any skill folder to `~/.workbuddy/skills/` or `~/.claude/skills
 My-skills/
 ├── skills/                  # Skill bodies · Skill 本体
 │   ├── interview-coach/     # SKILL.md + references/ + assets/
-│   └── llm-model-selection/ # SKILL.md + references/ + assets/
+│   └── email-master/        # SKILL.md + references/ (15 cases)
 ├── samples/                 # Sample outputs · 产出样例
-│   ├── interview-coach/     # 2 sample playbooks + screenshots
-│   └── llm-model-selection/ # 1 sample selection report + screenshot
+│   └── interview-coach/     # 2 sample playbooks + screenshots
 └── publish.sh               # One-command release script · 一键发布脚本
 ```
 
@@ -67,24 +66,6 @@ An AI workflow skill that turns JD + resume + company info into a structured 6-c
 | **D — Prep + Deep Dive** | What will the interviewer press on, and how do I prep? / 面试官会怎么追问，我提前怎么答 |
 | **E — Fit + Practice** | What does each round look like? How do I crack a case? / 几轮面试准备什么、Case 怎么拆 |
 | **F — Final Execution** | Concrete actions before / during / after the interview / 面前面中面后的具体动作 |
-
----
-
-## Featured: llm-model-selection · 大模型选型
-
-For enterprise presales: turning client constraints into a defensible model selection report. Most "selection guides" just compare parameters — this one starts by **eliminating what can't be chosen**, then comparing what's left. 面向 ToB 售前：把客户约束转成经得起追问的选型方案。
-
-**先排除，再比选。** 多数选型指南直接比参数，这套是先问"哪些是不能选的"。
-
-| Step | Question It Answers / 回答的问题 |
-|------|-------------------------------|
-| **1 — Veto Filters** | Which models are outright non-negotiable? / 有哪些是硬约束直接出局 |
-| **2 — Client Constraints** | What 10 things must we know before choosing? / 选之前必须问清的 10 项 |
-| **3 — Architecture** | Dense or MoE? Why does MoE save compute but not VRAM? / 稠密还是 MoE，为什么 MoE 省算力不省显存 |
-| **4 — Specs** | Which 8 dimensions to compare, and only among who survived? / 只在通过前一步的候选里比哪 8 个维度 |
-| **5 — PoC** | How many cases, how much blind testing, why one prompt for all? / 多少用例、多少盲测、为什么所有候选用同一套 prompt |
-| **6 — Conclusion** | What if scores tie? Why cost per *successful task*? / 分数接近怎么选，为什么按每成功任务算成本 |
-| **7 — Governance** | What must be ready before go-live? / 上线前必须准备好什么 |
 
 ---
 
