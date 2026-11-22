@@ -13,7 +13,6 @@ A collection of AI workflow skills I built and use daily.
 | Skill | What it does | Status |
 |-------|-------------|--------|
 | **[interview-coach](skills/interview-coach/)** · 面试陪练 | Turns JD + resume + company info into a structured 6-chapter interview playbook. 把 JD + 简历 + 公司信息变成 6 章结构化面试弹药库 | ✅ v4.4 |
-| **[llm-model-selection](skills/llm-model-selection/)** · 大模型选型 | Turns client constraints into a 7-step model selection report. 把客户约束转成可交付的选型方案 | ✅ v1.0 |
 | **[email-master](skills/email-master/)** · 邮件大师 | Cross-border business email drafting and rewriting with audience routing, escalation rules, and 15 bilingual cases. 跨境商务邮件撰写与改写，含收件人分级、升级规则与 15 个中英案例 | ✅ v8.0 |
 
 ---
