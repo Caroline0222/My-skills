@@ -1,87 +1,113 @@
-# My Skills · 我的 Skill 合集
+# My Skills
 
-A collection of AI workflow skills I built and use daily.
-我的 AI 工作流 Skill 合集，每个都来自真实工作场景，持续更新。
-
-> Compatible with WorkBuddy / Claude Code — copy any skill folder to `~/.claude/skills/` and it works.
-> 兼容 WorkBuddy / Claude Code：把任意 skill 文件夹复制到 `~/.claude/skills/` 即可使用。
+Agent skills I use in daily cross-border project work. Each skill is a self-contained folder with a `SKILL.md`, a `references/` library, and sample outputs. Written for WorkBuddy and Claude Code; the format is portable to any agent that reads `SKILL.md`.
 
 ---
 
-## Skills · Skill 索引
+## Skills
 
-| Skill | What it does | Status |
-|-------|-------------|--------|
-| **[interview-coach](skills/interview-coach/)** · 面试陪练 | Turns JD + resume + company info into a structured 6-chapter interview playbook. 把 JD + 简历 + 公司信息变成 6 章结构化面试弹药库 | ✅ v4.4 |
-| **[email-master](skills/email-master/)** · 邮件大师 | Cross-border business email drafting and rewriting with audience routing, escalation rules, and 15 bilingual cases. 跨境商务邮件撰写与改写，含收件人分级、升级规则与 15 个中英案例 | ✅ v8.0 |
+| Skill | What it does | Version |
+|-------|-------------|---------|
+| **[email-master](skills/email-master/)** | Drafts and rewrites cross-border business email for clients, vendors, and internal teams, in English or Chinese. Routes by recipient tier, applies escalation rules, and ships three subject lines, a ready-to-send body, an IM follow-up note, and a pre-send check. 15 bilingual cases included. | v8.0 |
+| **[interview-coach](skills/interview-coach/)** | Turns a job description, a resume, and company research into a structured six-chapter interview playbook, from positioning and evidence to likely follow-up questions and round-by-round actions. | v4.4 |
 
 ---
 
-## Install · 安装
+## Install
 
-One command via the standard skills CLI (works with Claude Code, Cursor, Codex, Gemini CLI and 70+ agents):
-一条命令安装（适用于 Claude Code、Cursor、Codex、Gemini CLI 等 70+ 工具）：
+Install one skill through the skills CLI:
 
 ```bash
-npx skills add Caroline0222/My-skills --skill interview-coach
+npx skills add Caroline0222/My-skills --skill email-master
 ```
 
-Or install all skills (omit `--skill`):
-或者安装全部 skill（去掉 `--skill`）：
+Install everything:
 
 ```bash
 npx skills add Caroline0222/My-skills
 ```
 
-Or manually copy any skill folder to `~/.workbuddy/skills/` or `~/.claude/skills/`.
-或者手动把任意 skill 文件夹复制到 `~/.workbuddy/skills/` 或 `~/.claude/skills/`。
+Or copy a folder manually:
+
+```bash
+cp -r skills/email-master ~/.workbuddy/skills/
+cp -r skills/email-master ~/.claude/skills/
+```
 
 ---
 
-## Repo Structure · 目录结构
+## Usage
+
+1. Install a skill, or copy its folder into your agent's skills directory.
+2. Restart the agent so it picks up the new skill.
+3. Describe the task in plain language. The skill triggers on its own.
+
+Example prompts for `email-master`:
+
+- *"A client is requesting new features during UAT while keeping next Friday's go-live date."*
+- *"Communicate a 5-day launch delay to an executive with business impact and mitigation options."*
+- *"Send a formal reminder to a vendor after two missed deadlines."*
+
+---
+
+## Repository structure
 
 ```
 My-skills/
-├── skills/                  # Skill bodies · Skill 本体
-│   ├── interview-coach/     # SKILL.md + references/ + assets/
-│   └── email-master/        # SKILL.md + references/ (15 cases)
-├── samples/                 # Sample outputs · 产出样例
-│   └── interview-coach/     # 2 sample playbooks + screenshots
-└── publish.sh               # One-command release script · 一键发布脚本
+├── skills/
+│   ├── email-master/              # SKILL.md + references/ (15 cases)
+│   └── interview-coach/           # SKILL.md + references/ + assets/
+├── samples/
+│   └── interview-coach/           # Sample playbooks and screenshots
+├── publish.sh                     # Release helper
+├── README.md
+└── LICENSE
+```
+
+Each skill folder follows the same layout:
+
+```
+skill-name/
+├── SKILL.md          # Rules and routing (required)
+├── README.md         # Overview for humans
+├── references/       # Detail loaded on demand
+├── assets/           # Templates
+└── samples/          # Example outputs, where relevant
 ```
 
 ---
 
-## Featured: interview-coach · 面试陪练
+## email-master
 
-An AI workflow skill that turns JD + resume + company info into a structured 6-chapter interview prep playbook. Works across industries: **Product / Operations / Sales / HR / Finance / Tech / Design / Legal / Project Management**.
+Cross-border business email is a governance problem before it is a writing problem. A single sentence can concede scope, imply consent, or promise a date nobody agreed to. This skill handles the writing and the exposure at the same time.
 
-一个开源的 AI 工具。**不虚构 · 不夸大 · 不写空话 · 信息不足会先追问**。
+What it changes in practice:
 
-| Chapter | Question It Answers / 回答的问题 |
-|---------|-------------------------------|
-| **A — Understand the Opportunity** | What is this company and role really about? / 这家公司和岗位到底是什么 |
-| **B — My Positioning** | Why am I a match for this role? / 我跟这个岗位为什么匹配 |
-| **C — Evidence + Stories** | Which experiences back up my claims? / 我有哪些经历能接住这个问题 |
-| **D — Prep + Deep Dive** | What will the interviewer press on, and how do I prep? / 面试官会怎么追问，我提前怎么答 |
-| **E — Fit + Practice** | What does each round look like? How do I crack a case? / 几轮面试准备什么、Case 怎么拆 |
-| **F — Final Execution** | Concrete actions before / during / after the interview / 面前面中面后的具体动作 |
+| Behaviour | Effect |
+|-----------|--------|
+| **Audience routing** | Three recipient tiers (external client, internal peer or vendor, upward escalation), each with its own register, structure, and salutation rules. |
+| **Governance gates** | 13 gates covering delay notices, vendor escalation, verbal-to-written confirmation, scope change and cost, complaint response, and concessions. |
+| **Hard constraints** | No invented dates or amounts, body length 120–180 words, dual timezone, currency with tax basis, one bolded element per paragraph, and a banned-phrase list. |
+| **Send-out package** | Three subject lines, the body, a short IM ping, and a pre-send check that includes a forwardability test. |
 
----
-
-## Sample Preview
-
-![Header preview](./samples/interview-coach/样例截图-华泰国际-首屏.png)
-
-Open the `.html` files in [samples/](samples/interview-coach/) locally in a browser to view full playbooks.
+The reference library holds 15 cases, each with an English and a Chinese version of the same email, covering scope additions, active and passive delays, vendor escalation, cross-team asks, deadline pushback, and post-launch credit.
 
 ---
 
-## How to Use · 怎么用
+## interview-coach
 
-1. Pick a skill from the index above · 从上面的索引挑一个 skill
-2. Copy its folder (e.g. `skills/interview-coach/`) to `~/.workbuddy/skills/` or `~/.claude/skills/`
-3. Restart the app, then just describe your task in chat — the skill triggers automatically
+Interview preparation reduces to six questions. The skill answers them in order, so a candidate walks in with a position rather than a list of tips.
+
+| Chapter | Question it answers |
+|---------|---------------------|
+| **A — Understand the opportunity** | What is this company and this role actually about? |
+| **B — My positioning** | Why is this candidate a match? |
+| **C — Evidence and stories** | Which experiences back up the claims? |
+| **D — Prep and deep dive** | What will the interviewer press on, and how should it be prepared? |
+| **E — Fit and practice** | What does each round look like, and how is a case broken down? |
+| **F — Final execution** | What to do before, during, and after the interview? |
+
+Built for Product, Operations, Sales, HR, Finance, Tech, Design, Legal, and Project Management roles. Sample playbooks are in [samples/interview-coach/](samples/interview-coach/).
 
 ---
 
