@@ -1,9 +1,9 @@
 ---
 name: email-master
-description: Use when the user asks to draft, rewrite, reply to, soften, escalate, de-escalate, or follow up on a business email in an MNC or cross-border context (US / APAC / Singapore / Hong Kong), or when a PM, presales lead, or delivery manager needs to put a scope change, delay, vendor escalation, verbal agreement, concession, complaint response, or cross-team ask into writing. Covers external client governance and internal cross-functional collaboration. Default output is business English; switch to Chinese only when the recipient or the user requires it. One email, one language — never produce bilingual side-by-side drafts.
+description: Use when the user asks to draft, rewrite, reply to, soften, escalate, de-escalate, or follow up on a business email in an MNC or cross-border context (US / APAC / Singapore / Hong Kong), or when a PM, presales lead, or delivery manager needs to put a scope change, delay, vendor escalation, verbal agreement, concession, complaint response, or cross-team ask into writing. Covers external client governance, internal cross-functional collaboration, and short relational email such as recruiter replies, introductions, thank-you notes, and post-meeting follow-ups. Default output is business English; switch to Chinese only when the recipient or the user requires it. One email, one language — never produce bilingual side-by-side drafts.
 license: MIT
 metadata:
-  version: "8.0"
+  version: "8.1"
 ---
 
 # Email Master
@@ -23,6 +23,9 @@ Decide the mode first. Everything downstream depends on it.
 | **A — External / Client-side Executive** | Client, client's leadership, partner org outside your company | 1–5, 12, 13 |
 | **B — Internal Peers / Vendor / Multi-Stakeholder** | Same-company peers, vendor PMs, cross-team working level | 6, 7, 8, 9, 11 |
 | **C — Upward / Cross-Functional Escalation** | Your manager, director, or a peer's leadership | 10; Gate 7 when the recipient is senior to you |
+| **D — Relational / Short Correspondence** | Recruiters and headhunters, first contact, introductions, thank-you notes, post-meeting follow-ups — anyone where the point is the relationship, not a decision record | None. No gate applies. See 1.3 |
+
+Mode is decided by **what the email is for**, not by who the recipient is. A recruiter is external, but a reply to their outreach is Mode D, not Mode A: there is no scope, no cost, and nothing that can be held against you later. When in doubt between A and D, ask whether the email could later be produced as evidence in a commercial dispute. If it could not, it is D.
 
 If the recipient tier is genuinely ambiguous after reading the thread, ask **one** question. Otherwise pick the mode and say which mode you picked in the output footer.
 
@@ -64,6 +67,7 @@ Preserve the user's voice where it is already appropriate. Do not upgrade a warm
 - **Mode A** — Natural executive prose. 1–3 lines per paragraph. No labelled `Option A / Option B` lists; a soft either-or is acceptable only in plain prose ("we can lock scope and hold the date, or fold these in and move the date by about a week"). Banned: "quick heads-up", "jump on a quick call", "hop on a call", "circle back", "ping me". Never propose a meeting slot unilaterally — always offer two exits: a concise written brief, **or** a short walkthrough at the recipient's convenience.
 - **Mode B** — Structured. Separate **Action Required** from **For Information**. Labelled `Option A / B / C` is expected here when presenting a resource or timeline decision.
 - **Mode C** — Structured like Mode B, but the ask must be approvable: every escalation ends with 2–3 concrete options a manager can pick from without further research.
+- **Mode D** — Conversational prose. 60–120 words, one paragraph per idea, no headings, no bullet lists, no numbered asks. Two asks are allowed, but they live in one flowing paragraph and priority shows through order: whatever needs to happen first is written first, in its own sentence. Write it the way a composed person speaks, not the way a project update reads. Banned in Mode D: internal audit verbs pointed at a non-vendor (`check`, `verify`, `validate`, `confirm the split between`) — use `understand`, `get a sense of`, `ask about`. Banned in Mode D: `Two things`, `First… Second…`, `Please find`, `Kindly note`, `As mentioned`.
 - **No `@` in email bodies.** Use `Name (Team): Deliverable + Deadline + Timezone`. `@` is fine in the Companion Ping (IM channel).
 
 ---
@@ -163,13 +167,13 @@ Give credit publicly, take responsibility personally. Name specific contribution
 ## Phase 4 — Hard Constraints
 
 1. **No invented facts.** Never fabricate dates, durations, amounts, man-days, percentages, names, ticket numbers, or thresholds. If a value is missing: insert `[TBC]`, flag it in the Governance Check, and list what still needs filling in. **Do not interrupt with a question.** This overrides every other instruction, including "make it ready to send".
-2. **Length.** 120–180 words for the body. Up to 220 for Mode A formal governance emails. Over 220, cut, do not compress.
+2. **Length.** Mode A/B/C: 120–180 words for the body, up to 220 for formal governance. Mode D: 60–120 words. Over the ceiling, cut — do not compress. Never pad to reach a floor; a 90-word Mode D note that says everything beats a 120-word one that repeats itself.
 3. **Timezone.** When sender and recipient are in different zones, first mention carries both: `Nov 23, 12:00 PM SGT (Nov 23, 11:00 PM EST)`. Later mentions may use one.
 4. **Money.** Currency code plus tax basis at first mention: `HKD 120,000 (excl. GST)`. Never a bare number.
 5. **Sign-off by tier.** Client / formal → `Best regards` or `顺颂商祺`. Internal daily → `Best` or `祝好`. Never `Thanks` alone to a client.
 6. **Bold surgically.** Maximum one bolded element per paragraph. Bold only: dates, amounts, and the action you need the recipient to take. Never bold a whole sentence.
 7. **Blacklist.** `We refer to`, `Please be advised`, `Kindly`, `Please revert`, `Please do the needful`, `As per my last email`, `As per our conversation`, `I hope this email finds you well`, `loop in`, `circle back`, `quick heads-up`, `hop on a call`, `jump on a quick call`, `敬请悉知`, `恳请批示`, `赋能`, `抓手`, `闭环`.
-8. **One reading, one action.** If the email contains more than one ask, rank them and label the primary one.
+8. **One reading, one action.** Rank the asks before writing: the primary ask gets its own sentence and comes first. **Labelling is Mode B/C only.** `Action Required`, `Option A/B/C`, `First… Second…`, `Two things would help` are all forbidden in Mode A and Mode D — there, priority shows through order and paragraph weight, never through enumeration. If a Mode D email needs a numbered list to make sense, it is not a Mode D email.
 
 ---
 
@@ -191,4 +195,10 @@ Give credit publicly, take responsibility personally. Name specific contribution
 
 ### Light mode
 
-Triggered when the user only asks to polish a sentence, soften a tone, or fix one paragraph. Output the revised text plus one or two lines on what changed. Skip the three subject lines, the Companion Ping, and the full governance check.
+Triggered when any of these is true:
+
+- The user only asks to polish a sentence, soften a tone, or fix one paragraph.
+- The email is Mode D.
+- The body lands at 120 words or fewer.
+
+Output the revised text plus one or two lines on what changed. Skip the three subject lines, the Companion Ping, and the full governance check. For Mode D, collapse the check to three lines: attachments, factual accuracy, and forwardability. Subject lines come back only if the user is starting a new thread rather than replying in one.

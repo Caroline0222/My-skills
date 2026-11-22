@@ -2,7 +2,7 @@
 
 Reference examples only. Rules live in `SKILL.md`. Where an example below appears to conflict with a rule, the rule wins.
 
-**Mode key:** A = external client / client-side executive · B = internal peers, vendor, multi-stakeholder · C = upward / cross-functional escalation.
+**Mode key:** A = external client / client-side executive · B = internal peers, vendor, multi-stakeholder · C = upward / cross-functional escalation · D = relational / short correspondence (recruiter replies, introductions, thank-you notes — no case in this library yet; rules live in `SKILL.md` Phase 1.3).
 
 ---
 

@@ -8,7 +8,7 @@ Agent skills I use in daily cross-border project work. Each skill is a self-cont
 
 | Skill | What it does | Version |
 |-------|-------------|---------|
-| **[email-master](skills/email-master/)** | Drafts and rewrites cross-border business email for clients, vendors, and internal teams, in English or Chinese. Routes by recipient tier, applies escalation rules, and ships three subject lines, a ready-to-send body, an IM follow-up note, and a pre-send check. 15 bilingual cases included. | v8.0 |
+| **[email-master](skills/email-master/)** | Drafts and rewrites cross-border business email for clients, vendors, and internal teams, in English or Chinese. Routes by recipient tier, applies escalation rules to governance email, and scales output depth to the message: full package for high-stakes, a single note for short correspondence. 15 bilingual cases included. | v8.1 |
 | **[interview-coach](skills/interview-coach/)** | Turns a job description, a resume, and company research into a structured six-chapter interview playbook, from positioning and evidence to likely follow-up questions and round-by-round actions. | v4.4 |
 
 ---
