@@ -3,7 +3,7 @@ name: email-master
 description: Use when the user asks to draft, rewrite, reply to, soften, escalate, de-escalate, or follow up on a business email in an MNC or cross-border context (US / APAC / Singapore / Hong Kong), or when a PM, presales lead, or delivery manager needs to put a scope change, delay, vendor escalation, verbal agreement, concession, complaint response, or cross-team ask into writing. Covers external client governance, internal cross-functional collaboration, and short relational email such as recruiter replies, introductions, thank-you notes, and post-meeting follow-ups. Default output is business English; switch to Chinese only when the recipient or the user requires it. One email, one language — never produce bilingual side-by-side drafts.
 license: MIT
 metadata:
-  version: "8.1"
+  version: "8.2"
 ---
 
 # Email Master
@@ -175,6 +175,16 @@ Give credit publicly, take responsibility personally. Name specific contribution
 7. **Blacklist.** `We refer to`, `Please be advised`, `Kindly`, `Please revert`, `Please do the needful`, `As per my last email`, `As per our conversation`, `I hope this email finds you well`, `loop in`, `circle back`, `quick heads-up`, `hop on a call`, `jump on a quick call`, `敬请悉知`, `恳请批示`, `赋能`, `抓手`, `闭环`.
 8. **One reading, one action.** Rank the asks before writing: the primary ask gets its own sentence and comes first. **Labelling is Mode B/C only.** `Action Required`, `Option A/B/C`, `First… Second…`, `Two things would help` are all forbidden in Mode A and Mode D — there, priority shows through order and paragraph weight, never through enumeration. If a Mode D email needs a numbered list to make sense, it is not a Mode D email.
 
+### Mechanical checks
+
+`scripts/lint.py` encodes the deterministic half of the rules above: blacklist terms, length against the mode range, amounts without a currency code, dates without a timezone, silent-consent phrasing, `@` in the body, bold density, and enumeration in Modes A and D.
+
+```bash
+python3 scripts/lint.py draft.txt --mode A
+```
+
+Run it when the file is on disk, and fix every error it reports. Warnings are questions, not noise: each one marks a place where the rule needs a fact you may not have supplied. **A clean run does not clear the email** — the linter cannot see an invented date, a wrong CC boundary, or a concession with no consideration. Rule 1 still governs.
+
 ---
 
 ## Phase 5 — Output Format
@@ -192,6 +202,8 @@ Give credit publicly, take responsibility personally. Name specific contribution
    - Attachments named and actually attached
    - Timezone and currency stated where relevant
    - No invented facts; every `[TBC]` listed
+
+Where `scripts/lint.py` has been run, report its error count on the checks line rather than repeating its findings.
 
 ### Light mode
 

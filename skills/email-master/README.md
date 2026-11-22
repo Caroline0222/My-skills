@@ -25,3 +25,10 @@ Describe your scenario directly:
 
 - `SKILL.md` — Audience routing, escalation rules, and communication guidelines.
 - `references/golden-rewrites.md` — **15 bilingual business scenarios** covering scope changes, delays, vendor escalations, internal alignment, and meeting summaries.
+- `scripts/lint.py` — Optional pre-send checker. Flags blacklist terms, body length outside the mode range, amounts without a currency code, dates without a timezone, silent-consent phrasing, and enumerations that turn a short reply into a project update.
+
+```bash
+python3 scripts/lint.py draft.txt            # mode inferred from length
+python3 scripts/lint.py draft.txt --mode A   # or pin it
+```
+
